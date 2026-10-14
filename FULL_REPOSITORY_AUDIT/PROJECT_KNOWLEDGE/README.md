@@ -2,7 +2,7 @@
 
 **Repository:** `Prasong1993/iresign`  
 **Purpose:** Central, evidence-first documentation index for understanding NEXUS and IRIS separately and evaluating possible future integration.  
-**Current mode:** READ-ONLY research  
+**Current mode:** READ-ONLY against source repositories; central audit documentation and provenance-labelled snapshots are being updated  
 **Baseline / Source of Truth:** UNKNOWN / NOT SELECTED  
 **Implementation / Integration:** NOT AUTHORIZED by the current Phase 0 checkpoint
 
@@ -33,11 +33,11 @@
 
 ## Source identity references (historical; revalidate before use)
 
-- NEXUS candidate: [Prasong1993/Loop-Controller](https://github.com/Prasong1993/Loop-Controller), recorded SHA `eb5359505bf39e4ca1dcd3512f2b8ea3ac6e8baa`.
-- IRIS candidate: [Prasong1993/Prasong](https://github.com/Prasong1993/Prasong), scope `IRIS/iris-controller-v0.6.5/`, recorded SHA `fee44e82a0926ca85833beff8a9462156117a2d9`.
+- NEXUS candidate: [Prasong1993/Loop-Controller](https://github.com/Prasong1993/Loop-Controller), current `main` SHA `eb5359505bf39e4ca1dcd3512f2b8ea3ac6e8baa` verified.
+- IRIS candidate: [Prasong1993/Prasong](https://github.com/Prasong1993/Prasong), scope `IRIS/iris-controller-v0.6.5/`, current `main` SHA `fee44e82a0926ca85833beff8a9462156117a2d9` verified.
 - Cloudflare candidate: [Prasong1993/LoopController](https://github.com/Prasong1993/LoopController), previously marked `BLOCKED — IDENTITY MISMATCH`; do not select as baseline without resolution.
 
-These SHAs and component descriptions are historical handoff data, not live confirmations of current repository heads or runtime behavior.
+The NEXUS and IRIS `main` heads and recursive tree inventories have now been revalidated. This does not verify runtime behavior or select a baseline.
 
 ## Working rules
 
