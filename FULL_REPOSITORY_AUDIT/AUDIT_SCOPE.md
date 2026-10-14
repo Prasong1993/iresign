@@ -1,48 +1,73 @@
 # FULL REPOSITORY AUDIT — Audit Scope
 
-- Repository: https://github.com/Prasong1993/iresign
+- Audit workspace: https://github.com/Prasong1993/iresign
 - Owner: Prasong1993
-- Default / target branch: `master`
-- Initial observed HEAD: `b90313cf09ee471d974dee33e87495593e37fcc9`
-- Audit mode: READ-ONLY AUDIT
-- Initial status: PLANNED / Phase 0 identity evidence partially collected
-- Baseline: UNKNOWN / NOT SELECTED
-- Date of initial repository inspection: 2026-10-15 (UTC time not recorded)
+- Default branch observed: `master`
+- Repository identity: observed from GitHub metadata; revalidate HEAD when recording new evidence
+- Current work: central evidence repository structure, source repository mapping, and provenance-labelled review snapshots
+- Phase: Phase 0 — Discovery & Evidence Verification
+- Baseline / Source of Truth: UNKNOWN / NOT SELECTED
+- Source repositories: READ-ONLY
+- Audit-repository documentation/structure and evidence-register writes: authorized by the user's latest instruction, with read-back required
+- Application source-code edits, baseline selection, full database migration, integration, deployment, release changes, and runtime/security testing: NOT AUTHORIZED
 
 ## Objective
 
-Collect evidence about the repository before deciding on implementation or consolidation. The long-term user-stated goal is a single plugin with multiple callable Skills, reusable shared core logic, explicit API/data boundaries, and possible future website compatibility. This goal is not evidence that the current repository contains NEXUS or IRIS source code.
+Use this repository as the central review workspace for evidence from the user's separate repositories and six private Plugin Creator plugins. Organize evidence by source/project so each file can be traced to the correct owner, repository, version, path, and exact commit. Keep NEXUS, IRIS, Project Control API, and other candidates separate until evidence establishes their identity and relationships.
 
-## Access and change control
+The user has clarified the intended sequence:
+1. Define and verify the central directory structure first.
+2. Register source repositories and their identities.
+3. Reconcile the six existing private Plugin Creator source snapshots and provenance.
+4. Collect source evidence into the correct per-project group, preserving provenance.
+5. Keep central/shared project information separate from a full database migration. The old Project Control API structure is unfinished; its complete database is deliberately deferred.
+6. Use the existing checkpoint NIR-P0-004; do not create a replacement checkpoint.
 
-Permitted for the audit: read repository metadata, branches, commits, tags/releases, source, manifests, tests, CI configuration, documentation, and accessible CI evidence; prepare evidence-based reports.
+Existing Plugin Creator snapshots are already present in the repository from earlier work. Preserve them while reconciling the structure; do not silently move, rename, overwrite, or delete them.
 
-Not authorized by this audit scope: modifying application source, deleting or moving existing files, changing branches, selecting or declaring an official baseline, merging NEXUS and IRIS, running deployments, changing production/database data, installing dependencies, running potentially mutating code, penetration testing, or failure injection.
+## Permissions and change control
 
-Separate authorization was granted to create only initial audit documentation. It does not authorize source-code changes or any of the prohibited operations above.
+Authorized in the audit repository:
+- Read current repository metadata, files, refs, commits, and accessible CI evidence.
+- Create or update audit documentation, structure maps, evidence registers, provenance records, and review snapshots needed for the central evidence workspace.
+- Read back each write and record its commit/blob identity.
+
+Not authorized:
+- Modifying source code in NEXUS, IRIS, Project Control API, or any other source repository.
+- Selecting or declaring an official baseline/source of truth.
+- Importing or migrating the complete central database or live/production data.
+- Merging source repositories, integrating systems, changing plugin releases, deploying, changing production state, or altering branches in source repositories.
+- Installing dependencies, running potentially mutating code, runtime tests, failure injection, penetration testing, or other security attack tests without separate approval.
+- Copying secrets, tokens, credentials, or production data into the audit repository.
 
 ## Evidence labels
 
-- OBSERVED — directly returned by a source or tool.
-- REPORTED — stated in an earlier report/checkpoint, not freshly confirmed here.
-- INFERRED — interpretation of available evidence.
-- UNKNOWN — insufficient evidence or inaccessible.
-- BLOCKED — a condition prevented verification.
+- `VERIFIED`: directly checked against a stated criterion.
+- `USER_STATED`: explicitly specified by the user but not independently verified.
+- `RECOVERED`: retrieved from previous context or historical records; current truth may require revalidation.
+- `PARTIAL`: only part of the criterion is covered.
+- `UNKNOWN`: insufficient evidence or unavailable.
+- `BLOCKED`: a specific identity, access, or technical barrier prevents verification.
+- `NEEDS_REVALIDATION`: historical evidence exists but must be checked against the current ref.
+- `NOT RUN`: action/test has not been executed.
+- `IN PROGRESS`: work has started but exit criteria are unmet.
 
-Audit statuses: VERIFIED, PARTIAL, UNKNOWN, BLOCKED, NOT RUN, IN PROGRESS.
-
-Track PLANNED, DISPATCHED, EXECUTED, and VERIFIED separately. Source inspection is not test execution; historical CI is not evidence for a different commit; API access is not proof of runtime behavior.
+Track `PLANNED`, `DISPATCHED`, `EXECUTED`, and `VERIFIED` separately. Source inspection is not test execution. A test definition is not a passing test. Historical CI is not evidence for a different commit. API/MCP reachability is not proof of ChatGPT integration.
 
 ## Required workflow
 
-Proceed in order: Phase 0 Repository Identity; Phase 1 File Inventory; Phase 2 Source and Architecture; Phase 3 API and Integration; Phase 4 Database and Read/Write Paths; Phase 5 Security; Phase 6 Tests and CI/CD; Phase 7 Documentation and Project Control; Phase 8 NEXUS/IRIS Consolidation Readiness; Phase 9 Future Website Readiness.
+1. Verify the master project structure and read it back.
+2. Maintain a source repository register with exact repository, branch/ref, commit, paths, evidence class, and limitations.
+3. Inventory each source repository at a specific commit; do not claim completeness until every in-scope path is accounted for.
+4. Inspect architecture, APIs, dependencies, persistence paths, security boundaries, tests and CI with path-level evidence.
+5. Maintain per-project evidence separately; only then create cross-project mappings.
+6. Complete G0-07 Mapping Register and G0-08 Document Consistency under the existing NIR-P0-004 checkpoint.
+7. Leave full database migration, source implementation, runtime testing, integration, and baseline selection blocked until separately authorized.
 
-Do not claim a phase is complete unless the relevant scope has been inspected and its evidence and limitations are recorded.
+## Historical observations and limitations
 
-## Initial limitations
-
-At initial inspection, GitHub repository metadata reported default branch `master`; the branch reference pointed to the initial observed HEAD above; the root Contents API returned an empty array; the releases endpoint returned an empty array. A tags endpoint request was not successfully verified. The GitHub API does not expose a local working-tree state. These are initial observations only and must be revalidated as the audit proceeds.
+Earlier setup records reported that GitHub metadata returned default branch `master`, and an initial root Contents API call returned an empty array. The current tree has since contained audit documentation and plugin artifact folders. Preserve the earlier observation as historical; do not overwrite it or use it as the current tree. Record each new HEAD and inventory as a new observation.
 
 ## Change log
 
-- 2026-10-15: Initial scope document created under separate authorization. This document is project-control documentation, not an audit completion report.
+- 2026-10-15: Scope clarified to reflect the user's latest authorization for central structure/documentation and provenance-labelled evidence collection in this repository. Source repositories remain read-only; full central database migration remains deferred.
