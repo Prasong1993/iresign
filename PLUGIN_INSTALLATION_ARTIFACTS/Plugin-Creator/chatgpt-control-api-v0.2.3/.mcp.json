@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "control-api": {
+      "type": "streamable-http",
+      "url": "https://chatgpt-control-btlwd62ai-prasong-seelapranee.vercel.app/mcp",
+      "headers": {}
+    }
+  }
+}
