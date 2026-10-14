@@ -1,0 +1,48 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "iris-controller",
+  "version": "0.7.4",
+  "description": "Unified IRIS controller: evidence-gated five-step workflow, deterministic project policy, persistent usage ledger, audit, checkpoints, recovery, and registered-tool routing.",
+  "author": {
+    "name": "ประสงค์ สีลปราณี",
+    "url": "https://github.com/Prasong1993"
+  },
+  "homepage": "https://github.com/Prasong1993/Prasong/tree/main/IRIS/iris-controller-v0.6.5",
+  "repository": "https://github.com/Prasong1993/Prasong",
+  "license": "MIT",
+  "keywords": [
+    "IRIS",
+    "workflow",
+    "evidence",
+    "verification",
+    "project-policy",
+    "usage-ledger",
+    "checkpoint",
+    "recovery",
+    "audit"
+  ],
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [
+          "Interactive",
+          "Write"
+        ],
+        "category": "Productivity",
+        "displayName": "IRIS Controller",
+        "developerName": "ประสงค์ สีลปราณี",
+        "shortDescription": "Unified workflow, policy, usage ledger and audit",
+        "longDescription": "One consolidated controller combines five-step evidence-gated work, deterministic project and budget checks, persistent usage records, audit/checkpoints/recovery, and capability routing for tools explicitly exposed by a host adapter. It does not claim automatic discovery or invocation of every ChatGPT tool.",
+        "defaultPrompt": [
+          "เริ่มงานด้วย IRIS controller: ตรวจหลักฐานและทำ 5 ขั้นโดยไม่ข้าม gate",
+          "ก่อนสร้างงานโครงการให้เรียก check_project_policy และใช้ create_controlled_task เมื่อผ่านเท่านั้น",
+          "บันทึก/อ่าน/แก้ไข usage ledger ผ่าน record_usage, list_usage, get_usage, update_usage",
+          "ตรวจผลจริงและเรียก final_verify ก่อนประกาศส่งมอบ"
+        ],
+        "brandColor": "#0EA5E9"
+      }
+    }
+  }
+}
