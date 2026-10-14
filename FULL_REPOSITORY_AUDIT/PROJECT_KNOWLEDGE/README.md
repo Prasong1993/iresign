@@ -47,3 +47,15 @@ The NEXUS and IRIS `main` heads and recursive tree inventories have now been rev
 4. Distinguish PLANNED, DISPATCHED, EXECUTED and VERIFIED.
 5. Do not claim a folder, document, test, integration or runtime is complete unless directly checked.
 6. This library describes the work; it does not authorize source changes, deployments, baseline selection or integration.
+
+
+## Current repository evidence status — 2026-10-15
+
+- [NEXUS file inventory](../02_PROJECTS/NEXUS/FULL_FILE_INVENTORY.md): 52 tree entries at the revalidated `main` SHA; source content review remains incomplete.
+- [IRIS file inventory](../02_PROJECTS/IRIS/FULL_FILE_INVENTORY.md): 107 tree entries at the revalidated `main` SHA; source content review remains incomplete.
+- [G0-07 Mapping Register](../03_CROSS_PROJECT_MAPPING/G0-07_MAPPING_REGISTER.md): initial 13 mappings recorded; IN PROGRESS.
+- [G0-08 Document Consistency Review](../08_DOCUMENT_CONSISTENCY/G0-08_DOCUMENT_CONSISTENCY_REVIEW.md): initial findings recorded; IN PROGRESS.
+- Six private Plugin Creator snapshots: 72/72 current source files exact content-matched.
+- IRIS v0.6.5 reference snapshot: 21/21 files exact content-matched to source commit; manifest read-back verified.
+- Target-SHA CI metadata: NEXUS run #193 success; IRIS run #3 success. Neither proves live ChatGPT integration or runtime acceptance.
+- Baseline/source of truth remains UNKNOWN / NOT SELECTED. Full Project Control API database migration remains deferred. Runtime/installability tests remain NOT RUN.
