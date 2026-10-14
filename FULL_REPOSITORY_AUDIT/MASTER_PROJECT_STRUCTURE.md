@@ -8,7 +8,7 @@
 **Mode:** READ-ONLY  
 **Baseline / Source of Truth:** UNKNOWN / NOT SELECTED  
 **Execution:** PENDING  
-**Structure status:** PROPOSED DOCUMENTATION MAP; not a claim that all folders/files exist.
+**Structure status:** PROJECT_KNOWLEDGE documentation folder created and readback pending; NEXUS/IRIS source trees remain separate and were not modified.
 
 ## 1. Governing rules
 
@@ -20,7 +20,7 @@
 6. Phase 1 is not authorized. Repository reorganization, plugin/storage modification, baseline selection, deployments, production/database changes, dependency installation, penetration testing, and failure injection are not authorized by the checkpoint.
 7. This structure is a documentation proposal. It does not select a source of truth, approve a baseline, or authorize implementation.
 
-## 2. Proposed master directory map
+## 2. Master project directory map
 
 ```text
 iresign/
@@ -29,6 +29,15 @@ iresign/
 │   ├── MASTER_CHECKPOINT.md                   [existing; preserve historical checkpoint]
 │   ├── MASTER_CHECKLIST.md                    [existing; phase gate checklist]
 │   ├── EVIDENCE_REGISTER.md                   [existing; append-only evidence log]
+│   ├── PROJECT_KNOWLEDGE/
+│   │   ├── README.md                           [created; document index]
+│   │   ├── MASTER_PROJECT_KNOWLEDGE.md          [created; Parts I–IX, project lifecycle]
+│   │   ├── NEXUS_SOURCE_REVIEW_PLAN.md          [created; read-only component review plan]
+│   │   ├── IRIS_SOURCE_REVIEW_PLAN.md           [created; read-only component review plan]
+│   │   ├── INTEGRATION_READINESS.md             [created; proposed evaluation only]
+│   │   ├── END_TO_END_WORKFLOW.md               [created; phase gates and workflow]
+│   │   ├── EVIDENCE_AND_VERIFICATION_MODEL.md   [created; evidence/status rules]
+│   │   └── BLACKLIST_AND_CHANGE_CONTROL.md      [created; checkpoint-derived prohibitions]
 │   ├── MASTER_PROJECT_STRUCTURE.md            [this document]
 │   ├── 00_G0-Intake-and-Identity/
 │   │   ├── REPOSITORY_IDENTITY.md             [planned]
@@ -73,7 +82,7 @@ iresign/
         └── iris-controller-v0.7.4/             [existing snapshot]
 ```
 
-**Directory rule:** the tree above is a target information architecture, not a verified listing of current GitHub contents. Create only the next approved documentation deliverable; do not bulk-create empty structure or move existing artifacts as part of Phase 0.
+**Directory rule:** the PROJECT_KNOWLEDGE files above were created as documentation. Other bracketed [planned] paths remain proposed, not present by implication. NEXUS and IRIS source trees have not been moved, merged, or modified.
 
 ## 3. Checkpoint-driven phase gates
 
@@ -145,3 +154,10 @@ The Plugin Creator archive index records six private USER-scope plugins and 72 s
 
 - 2026-10-15: Structure drafted from the retrieved TickTick checkpoint `NIR-P0-004` and existing repository audit documents. No source code was changed, no baseline was selected, and no phase was marked complete by this document.
 - Blacklist search limitation: TickTick search returned no matching task for the tested terms `blacklist`, `black list`, `ห้าม`, `NIR-P0-003`, `Project Workflow Guard`, `provenance`, `BLOCKED`, `NEXUS`, or `IRIS`. The prohibition list above is therefore grounded in the checkpoint text retrieved directly by task ID; any additional standalone blacklist record remains UNKNOWN and must be reconciled if located.
+
+
+## 9. Project knowledge documents — creation status
+
+- Created under `FULL_REPOSITORY_AUDIT/PROJECT_KNOWLEDGE/`: README, master knowledge specification, NEXUS review plan, IRIS review plan, integration readiness, end-to-end workflow, evidence/verification model, and blacklist/change control.
+- These are planning and reference documents. They do not assert that source review, mapping, tests, runtime, integration or release gates have passed.
+- Next checkpoint remains G0-07 Mapping Register, then G0-08 Document Consistency.
