@@ -1,0 +1,31 @@
+{
+  "interface": {
+    "capabilities": [
+      "Interactive"
+    ],
+    "category": "Productivity",
+    "defaultPrompt": "Control this task through the five-step gated workflow. Use usage records to track and update task usage data when requested. Use the configured remote MCP service from any supported ChatGPT client; do not require a desktop, PC, terminal, or local process.",
+    "developerName": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "displayName": "ChatGPT Control API",
+    "longDescription": "Client-independent controller for supported ChatGPT clients, including mobile and desktop, through its configured remote MCP endpoint. No PC, desktop application, terminal, or local process is required for ordinary use. Controls task execution through isolated attempts, evidence validation, policy-gated routing, execution, verification, reset-on-failure, and a separate usage-record ledger for creating, reviewing, and updating usage data. Availability depends on the ChatGPT client's support for the connected plugin/MCP integration, account access, network connectivity, and the remote service being online; it does not promise unlimited usage.",
+    "shortDescription": "Cross-platform task controller with evidence gates and usage records"
+  },
+  "name": "chatgpt-control-api",
+  "version": "0.2.3",
+  "description": "Client-independent five-step AI task controller with evidence-gated execution and editable usage records.",
+  "author": {
+    "name": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "email": "lek0805974491@gmail.com"
+  },
+  "keywords": [
+    "mobile",
+    "android",
+    "cross-platform",
+    "chatgpt",
+    "task-control",
+    "usage-records",
+    "evidence-first"
+  ],
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json"
+}
