@@ -40,7 +40,7 @@ Existing plugin snapshots were placed in this repository before the structure wa
 
 ## 3. Target directory structure
 
-This is the target organization. A path marked **planned** is not claimed to exist until GitHub confirms it. Existing paths remain where they are during this first structure pass.
+This is the target organization. The grouping directories and README index files listed below have now been created and read back on GitHub. Other files within those groups remain planned until created and verified. Existing source snapshots remain in their original locations.
 
 ```text
 iresign/
@@ -55,24 +55,24 @@ iresign/
 │   ├── NEXUS_IRIS_MASTER_CHECKPOINT.md          # existing cross-system checkpoint
 │   ├── NEXUS_IRIS_PHASE_CHECKLIST.md            # existing phase checklist
 │   ├── NEXUS_IRIS_PROJECT_KNOWLEDGE_AND_WORKFLOW.md
-│   ├── 00_CONTROL_AND_CHECKPOINTS/              # planned: indexes and gate evidence
-│   ├── 01_SOURCE_REPOSITORY_REGISTER/           # planned: identities, refs, access limits
+│   ├── 00_CONTROL_AND_CHECKPOINTS/              # created: README index verified
+│   ├── 01_SOURCE_REPOSITORY_REGISTER/           # created: repository register verified
 │   ├── 02_PROJECTS/
-│   │   ├── NEXUS/                               # planned: NEXUS-only evidence and mappings
-│   │   ├── IRIS/                                # planned: IRIS-only evidence and mappings
-│   │   ├── PROJECT_CONTROL_API/                 # planned: Control API evidence only
-│   │   └── SHARED_CORE/                          # planned: central/reference information only
-│   ├── 03_CROSS_PROJECT_MAPPING/                # planned: exact/semantic/conflict mapping
-│   ├── 04_FILE_INVENTORY_AND_ARCHITECTURE/       # planned: inventory, symbols, dependencies
-│   ├── 05_API_DATA_AND_READ_WRITE_PATHS/         # planned: contracts and persistence paths
-│   ├── 06_SECURITY_IDENTITY_AND_OWNERSHIP/        # planned: permissions, secrets policy, conflicts
-│   ├── 07_TESTS_CI_AND_RUNTIME_EVIDENCE/          # planned: separate test/CI/runtime evidence
-│   ├── 08_DOCUMENT_CONSISTENCY/                  # planned: contradictions, stale docs, gaps
-│   ├── 09_BLACKLIST_AND_CHANGE_CONTROL/           # planned: prohibitions and authorization records
-│   ├── 10_WEBSITE_AND_INTEGRATION_READINESS/      # planned: assessment only, no implementation
-│   ├── 90_EVIDENCE_HISTORY/                       # planned: dated evidence packages, append-only
-│   ├── 98_BLOCKED_AND_MISSING_INPUTS/             # planned: archives, access, unknowns
-│   ├── 99_SUPERSEDED_REFERENCE/                   # planned: retained historical records
+│   │   ├── NEXUS/                               # created: inventory and project index
+│   │   ├── IRIS/                                # created: inventory and project index
+│   │   ├── PROJECT_CONTROL_API/                 # created: candidate inventory and project index
+│   │   └── SHARED_CORE/                          # created: reference-only index
+│   ├── 03_CROSS_PROJECT_MAPPING/                # created: mapping index
+│   ├── 04_FILE_INVENTORY_AND_ARCHITECTURE/       # created: inventory/architecture index
+│   ├── 05_API_DATA_AND_READ_WRITE_PATHS/         # created: data/API index
+│   ├── 06_SECURITY_IDENTITY_AND_OWNERSHIP/        # created: security/identity index
+│   ├── 07_TESTS_CI_AND_RUNTIME_EVIDENCE/          # created: test/CI/runtime index
+│   ├── 08_DOCUMENT_CONSISTENCY/                  # created: consistency-review index
+│   ├── 09_BLACKLIST_AND_CHANGE_CONTROL/           # created: change-control index
+│   ├── 10_WEBSITE_AND_INTEGRATION_READINESS/      # created: readiness index
+│   ├── 90_EVIDENCE_HISTORY/                       # created: evidence-history index
+│   ├── 98_BLOCKED_AND_MISSING_INPUTS/             # created: blocker index
+│   ├── 99_SUPERSEDED_REFERENCE/                   # created: historical-reference index
 │   └── PROJECT_KNOWLEDGE/                         # existing: project knowledge documents
 └── PLUGIN_INSTALLATION_ARTIFACTS/
     ├── README.md                                 # artifact policy and limitations
@@ -108,7 +108,7 @@ Source identities must remain distinct:
 
 ## 5. Six Plugin Creator snapshots — current recorded inventory
 
-The existing index reports six private USER-scope plugins and 72 source files. This is a **RECOVERED/recorded inventory** and should be revalidated against Plugin Creator before being treated as current release truth.
+The current Plugin Creator inventory was re-read for all six private USER-scope plugins. Current source file lists and contents were compared with GitHub destination files; **72/72 source files matched exactly**. This verifies snapshot content parity with the current Plugin Creator source reader, not official archive parity or runtime/installability.
 
 | Plugin | Version | Recorded source-file count | Snapshot |
 |---|---:|---:|---|
@@ -122,7 +122,7 @@ The existing index reports six private USER-scope plugins and 72 source files. T
 
 Verification limits from the existing index:
 - Source inventory/read: previously recorded as successful.
-- Destination read-back of every file: **NOT YET VERIFIED**.
+- Plugin Creator current source contents compared with GitHub destination: **VERIFIED — 72/72 exact content matches across six plugins**.
 - Byte-for-byte parity with official installation archives: **NOT RUN**.
 - Installation/runtime tests: **NOT RUN**.
 - Do not call these six folders complete install packages unless manifests, required files, archive layout, and install/runtime behavior are separately verified.
@@ -144,7 +144,7 @@ Verification limits from the existing index:
 | G0-11 | Archive provenance | Original archives, exact paths, TAR listing and SHA-256; comparison only to a trusted reference |
 | Phase 1 | Implementation | Requires separate explicit authorization |
 
-Current next checkpoint work remains G0-07 then G0-08. The full inventory is not complete. Runtime/tests/failure-injection remain NOT RUN. Baseline remains UNKNOWN / NOT SELECTED.
+Current next checkpoint work remains G0-07 then G0-08. The current NEXUS and IRIS source-tree path inventories are recorded, but the full content-level audit inventory is not complete. Runtime/tests/failure-injection remain NOT RUN. Baseline remains UNKNOWN / NOT SELECTED.
 
 ## 7. Immediate next actions
 
@@ -159,5 +159,5 @@ Current next checkpoint work remains G0-07 then G0-08. The full inventory is not
 ## 8. Change log
 
 - 2026-10-15: Reconciled the target organization from the recovered user instruction and existing repository records. This document defines the intended structure; planned folders are not claimed to exist until checked.
-- Existing plugin snapshots predate this revision and remain in place. Their presence is not evidence of full read-back, archive parity, installation, tests, or runtime verification.
+- Structure directories and README indexes were created and read back; source-tree inventories were added for NEXUS (52 entries), IRIS (107 entries), and the blocked LoopController candidate (1 entry). Six Plugin Creator source snapshots were compared file-by-file against the current Plugin Creator contents: 72/72 matched. Official archive parity and runtime/installability remain NOT RUN.
 - No baseline selected; no source code changed; no full database migrated; no integration or deployment performed.
