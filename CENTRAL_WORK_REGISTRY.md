@@ -186,7 +186,6 @@ These are historical context items and require revalidation against the latest s
 
 - 2026-10-15: Initial central registry seed assembled from inspected NEXUS source files and recovered project-control context. This entry does not assert full import, runtime integration, or test completion.
 
-
 ## 10. Project Control API — initial data captured on 2026-10-15
 
 - Recovery package: [2026-10-15 Initial Project Data Recovery](FULL_REPOSITORY_AUDIT/02_PROJECTS/PROJECT_CONTROL_API/2026-10-15_INITIAL_PROJECT_DATA_RECOVERY.md).
@@ -195,8 +194,6 @@ These are historical context items and require revalidation against the latest s
 - The original Cloudflare candidate remains `BLOCKED — IDENTITY MISMATCH`; the NEXUS repository is source-verified at its pinned commit but is not automatically selected as the original Control API baseline.
 - The package is not a full export of all chats, external tasks, private archives, live database rows, secrets, or deployment logs. Those sources remain `UNKNOWN / NOT RECOVERED` unless separately evidenced.
 - Baseline remains `UNKNOWN / NOT SELECTED`; runtime and live ChatGPT/mobile integration tests for this capture are `NOT RUN`.
-
-
 
 ## 11. Six-plugin cross-consistency audit — 2026-10-15
 
@@ -208,3 +205,12 @@ These are historical context items and require revalidation against the latest s
 - Proposed logical common point: Assistant Error Guard as behavioral preflight, Evidence Workflow Guard as checklist/reference, and exactly one primary controller only after runtime/persistence checks. NEXUS remains instruction-only until connected; IRIS Step 1 remains legacy reference pending parity checks.
 - Baseline remains `UNKNOWN / NOT SELECTED`; runtime tests and Android/iOS/iPadOS/web host integration are `NOT RUN / NOT VERIFIED` in this audit.
 - No plugin, source repository, runtime configuration or database was modified by the audit; only the dated audit record and this registry reference were written.
+
+## 12. IRIS Step 1 — API master catalog — 2026-10-15
+
+- Master catalog: [IRIS Step 1 API Master Catalog & Research Register](FULL_REPOSITORY_AUDIT/02_PROJECTS/IRIS_STEP1/2026-10-15_IRIS_STEP1_API_MASTER_CATALOG.md).
+- Catalog commit: `bd185290fe96150826f7d77eaff0be095508d58b`; read-back confirmed on `master`.
+- Scope: source-declared REST endpoints, OpenAPI reference, Plugin ID vs Release ID vs SQLite Project/Task IDs, SQLite schema/persistence, task/policy flow, API classes, official API design/security references, security gaps, error handling, and a 18-item verification matrix.
+- Sources read from the current `iris-step1` release: `runtime/main.py`, `runtime/database.py`, `runtime/policy.py`, `runtime/task_queue.py`, `runtime/queue.py`, `runtime/verify.py`, `runtime/dola_setup_guide.md`, and package metadata.
+- Official references include OpenAPI 3.1, HTTP Semantics RFC 9110, OAuth Security BCP RFC 9700, OWASP API Security Top 10 2023, FastAPI testing, SQLite docs, and official OpenAI API docs.
+- Important limitations: live base URL/OpenAPI fetch `UNKNOWN / NOT VERIFIED`; runtime tests `NOT RUN`; actual SQLite DB rows `NOT INSPECTED`; auth/user/API-key issuance `UNKNOWN` in inspected runtime; no plugin/package modification, no new plugin, and no other plugin merged.
