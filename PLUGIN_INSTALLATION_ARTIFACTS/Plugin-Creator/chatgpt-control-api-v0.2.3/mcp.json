@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "control-api": {
+      "type": "streamable-http",
+      "url": "https://chatgpt-control-btlwd62ai-prasong-seelapranee.vercel.app/mcp"
+    }
+  }
+}
