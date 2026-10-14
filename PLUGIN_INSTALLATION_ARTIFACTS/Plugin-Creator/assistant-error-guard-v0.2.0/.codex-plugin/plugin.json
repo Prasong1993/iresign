@@ -1,0 +1,26 @@
+{
+  "interface": {
+    "capabilities": [
+      "Interactive"
+    ],
+    "category": "Productivity",
+    "defaultPrompt": [
+      "Use Assistant Error Guard on this task before you act.",
+      "Audit this result for unsupported claims, missed evidence, and unverified execution.",
+      "Turn this mistake into a prevention rule and regression test."
+    ],
+    "developerName": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "displayName": "Assistant Error Guard",
+    "longDescription": "A focused workflow for preventing assistant errors: scope checks, source evidence labels, action-state separation, honest verification, error analysis, and regression tests. It guides behavior but does not independently enforce platform-level controls.",
+    "shortDescription": "Check evidence, actions, and results"
+  },
+  "name": "assistant-error-guard",
+  "version": "0.2.0",
+  "description": "A practical self-check workflow that reduces assistant mistakes through evidence tracking, execution-state discipline, verification, and regression prevention.",
+  "author": {
+    "name": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "email": "lek0805974491@gmail.com"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}
