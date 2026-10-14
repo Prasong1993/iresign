@@ -196,3 +196,15 @@ These are historical context items and require revalidation against the latest s
 - The package is not a full export of all chats, external tasks, private archives, live database rows, secrets, or deployment logs. Those sources remain `UNKNOWN / NOT RECOVERED` unless separately evidenced.
 - Baseline remains `UNKNOWN / NOT SELECTED`; runtime and live ChatGPT/mobile integration tests for this capture are `NOT RUN`.
 
+
+
+## 11. Six-plugin cross-consistency audit — 2026-10-15
+
+- Audit report: [Plugin & Project-Control Cross-Consistency Audit](FULL_REPOSITORY_AUDIT/02_PROJECTS/PROJECT_CONTROL_API/2026-10-15_PLUGIN_CROSS_CONSISTENCY_AUDIT.md).
+- Report commit: `a916614160f9069bba3965731e698196a7a8795e`.
+- Inventory: six private plugins inspected — Assistant Error Guard, Evidence Workflow Guard, NEXUS Project Control, ChatGPT Control API, IRIS Step 1, IRIS Controller.
+- Shared design principles align on evidence-first work, policy gates, expected-vs-actual verification, error history and honest status; **technical integration is not established**.
+- Key findings: NEXUS plugin source-commit provenance drift (`de504565...` vs recovery snapshot `eb535950...`); Control API remote endpoint/runtime not verified; IRIS Step 1 overlaps with IRIS Controller and should not run in parallel for the same task; IRIS v0.6.5 historical test results do not verify current v0.7.4.
+- Proposed logical common point: Assistant Error Guard as behavioral preflight, Evidence Workflow Guard as checklist/reference, and exactly one primary controller only after runtime/persistence checks. NEXUS remains instruction-only until connected; IRIS Step 1 remains legacy reference pending parity checks.
+- Baseline remains `UNKNOWN / NOT SELECTED`; runtime tests and Android/iOS/iPadOS/web host integration are `NOT RUN / NOT VERIFIED` in this audit.
+- No plugin, source repository, runtime configuration or database was modified by the audit; only the dated audit record and this registry reference were written.
