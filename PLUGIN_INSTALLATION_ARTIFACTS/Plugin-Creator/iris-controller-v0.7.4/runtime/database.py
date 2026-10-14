@@ -1,0 +1,88 @@
+"""IRIS database layer with additive runtime observability."""
+import json
+import os
+import sqlite3
+import uuid
+from pathlib import Path
+
+_DEFAULT_DB_PATH = Path(__file__).parent / "data" / "iris.db"
+DB_PATH = Path(os.environ.get("IRIS_DB_PATH")) if os.environ.get("IRIS_DB_PATH") else _DEFAULT_DB_PATH
+
+def get_db_path():
+    env = os.environ.get("IRIS_DB_PATH")
+    return Path(env) if env else DB_PATH
+
+def set_db_path(path):
+    global DB_PATH
+    DB_PATH = Path(path)
+    os.environ["IRIS_DB_PATH"] = str(DB_PATH)
+
+def get_connection():
+    path = get_db_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(path, timeout=10)
+    conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA foreign_keys=ON")
+    conn.execute("PRAGMA busy_timeout=10000")
+    return conn
+
+_SCHEMA = """
+CREATE TABLE IF NOT EXISTS evidence(id TEXT PRIMARY KEY,status TEXT NOT NULL,topic TEXT NOT NULL,fact TEXT NOT NULL,source TEXT NOT NULL,verification_state TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS work_units(id TEXT PRIMARY KEY,title TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'CREATED',current_step INTEGER NOT NULL DEFAULT 0,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS step_runs(id INTEGER PRIMARY KEY AUTOINCREMENT,work_id TEXT NOT NULL,step INTEGER NOT NULL,attempt INTEGER NOT NULL,status TEXT NOT NULL,expected TEXT,actual TEXT,note TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS errors(id INTEGER PRIMARY KEY AUTOINCREMENT,work_id TEXT NOT NULL,step INTEGER,attempt INTEGER,error_type TEXT NOT NULL,message TEXT NOT NULL,expected TEXT,actual TEXT,root_cause TEXT,impact TEXT,correction TEXT,verification TEXT,prevention_rule TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS checkpoints(id INTEGER PRIMARY KEY AUTOINCREMENT,work_id TEXT NOT NULL,step INTEGER NOT NULL,state TEXT NOT NULL,snapshot TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS verifications(id INTEGER PRIMARY KEY AUTOINCREMENT,work_id TEXT NOT NULL,expected TEXT NOT NULL,actual TEXT NOT NULL,status TEXT NOT NULL,note TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS audit_log(id INTEGER PRIMARY KEY AUTOINCREMENT,work_id TEXT NOT NULL,action TEXT NOT NULL,details TEXT NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS schema_migrations(version INTEGER PRIMARY KEY,name TEXT NOT NULL,applied_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS tool_registry(tool_id TEXT PRIMARY KEY,name TEXT NOT NULL UNIQUE,input_schema_json TEXT NOT NULL,output_contract_json TEXT NOT NULL DEFAULT '{}',dependencies_json TEXT NOT NULL DEFAULT '[]',permission_json TEXT NOT NULL DEFAULT '{}',side_effects TEXT NOT NULL DEFAULT 'unknown',timeout_seconds INTEGER NOT NULL DEFAULT 60,retry_policy_json TEXT NOT NULL DEFAULT '{}',idempotent INTEGER NOT NULL DEFAULT 0,enabled INTEGER NOT NULL DEFAULT 1,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS tool_calls(tool_call_id TEXT PRIMARY KEY,work_id TEXT,task_id TEXT,session_id TEXT,trace_id TEXT,tool_id TEXT,tool_name TEXT NOT NULL,status TEXT NOT NULL,input_json TEXT NOT NULL DEFAULT '{}',output_json TEXT,error_json TEXT,idempotency_key TEXT UNIQUE,side_effect_started INTEGER NOT NULL DEFAULT 0,started_at TEXT,finished_at TEXT,result_recorded_at TEXT,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS work_events(event_id TEXT PRIMARY KEY,event_type TEXT NOT NULL,work_id TEXT,task_id TEXT,session_id TEXT,trace_id TEXT,tool_call_id TEXT,status TEXT,payload_json TEXT NOT NULL DEFAULT '{}',occurred_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,recorded_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS runtime_state(state_key TEXT PRIMARY KEY,state_json TEXT NOT NULL,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS projects(project_id TEXT PRIMARY KEY,name TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'ACTIVE',config_json TEXT NOT NULL DEFAULT '{}',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS tasks(task_id TEXT PRIMARY KEY,project_id TEXT,work_id TEXT,parent_task_id TEXT,title TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'PENDING',assignee TEXT,session_id TEXT,trace_id TEXT,started_at TEXT,finished_at TEXT,input_json TEXT NOT NULL DEFAULT '{}',output_json TEXT NOT NULL DEFAULT '{}',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS task_dependencies(task_id TEXT NOT NULL,depends_on_task_id TEXT NOT NULL,dependency_type TEXT NOT NULL DEFAULT 'finish_to_start',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY(task_id,depends_on_task_id),CHECK(task_id<>depends_on_task_id));
+CREATE TABLE IF NOT EXISTS policies(policy_id TEXT PRIMARY KEY,name TEXT NOT NULL,version TEXT NOT NULL,rule_json TEXT NOT NULL,enabled INTEGER NOT NULL DEFAULT 1,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,UNIQUE(name,version));
+CREATE TABLE IF NOT EXISTS policy_decisions(policy_decision_id TEXT PRIMARY KEY,work_id TEXT,task_id TEXT,tool_call_id TEXT,policy_id TEXT,result TEXT NOT NULL CHECK(result IN ('ALLOW','DENY','REQUIRE_APPROVAL')),reason TEXT NOT NULL,evidence_refs_json TEXT NOT NULL DEFAULT '[]',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS recovery_points(recovery_id TEXT PRIMARY KEY,work_id TEXT NOT NULL,task_id TEXT,checkpoint_id INTEGER,status TEXT NOT NULL DEFAULT 'AVAILABLE',snapshot_json TEXT NOT NULL,resume_strategy TEXT NOT NULL DEFAULT 'MANUAL_REVIEW',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS verification_results(verification_id TEXT PRIMARY KEY,work_id TEXT,task_id TEXT,subject_type TEXT NOT NULL,subject_id TEXT NOT NULL,status TEXT NOT NULL,expected_json TEXT,actual_json TEXT,verifier TEXT NOT NULL DEFAULT 'deterministic',evidence_refs_json TEXT NOT NULL DEFAULT '[]',details TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS record_revisions(revision_id INTEGER PRIMARY KEY AUTOINCREMENT,table_name TEXT NOT NULL,record_id TEXT NOT NULL,operation TEXT NOT NULL,before_json TEXT,after_json TEXT,changed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX IF NOT EXISTS idx_tool_calls_work_status ON tool_calls(work_id,status);
+CREATE INDEX IF NOT EXISTS idx_events_work_time ON work_events(work_id,occurred_at);
+"""
+
+def init_db():
+    with get_connection() as conn:
+        conn.executescript(_SCHEMA)
+        conn.execute("INSERT OR IGNORE INTO schema_migrations(version,name) VALUES(1,'additive_runtime_control_plane')")
+
+def one(sql, args=()):
+    with get_connection() as conn:
+        row = conn.execute(sql, args).fetchone()
+        return dict(row) if row else None
+
+def many(sql, args=()):
+    with get_connection() as conn:
+        return [dict(row) for row in conn.execute(sql, args).fetchall()]
+
+def record_event(event_type, work_id=None, task_id=None, session_id=None, trace_id=None,
+                 tool_call_id=None, status=None, payload=None, event_id=None):
+    eid = event_id or str(uuid.uuid4())
+    with get_connection() as conn:
+        conn.execute("""INSERT INTO work_events(event_id,event_type,work_id,task_id,session_id,trace_id,tool_call_id,status,payload_json)
+                        VALUES(?,?,?,?,?,?,?,?,?)""",
+                     (eid,event_type,work_id,task_id,session_id,trace_id,tool_call_id,status,
+                      json.dumps(payload or {},ensure_ascii=False,sort_keys=True)))
+    return eid
+
+def runtime_status(work_id=None):
+    clause, args = (" WHERE work_id=?", [work_id]) if work_id else ("", [])
+    updated = one("SELECT MAX(recorded_at) AS updated_at FROM work_events"+clause,args)
+    return {
+        "database":"ok", "db_path":str(get_db_path()), "updated_at":(updated or {}).get("updated_at"),
+        "latest_event":one("SELECT * FROM work_events"+clause+" ORDER BY rowid DESC LIMIT 1",args),
+        "active_tool_calls":many("SELECT * FROM tool_calls WHERE status IN ('PENDING','RUNNING','UNKNOWN_OUTCOME')"+(" AND work_id=?" if work_id else "")+" ORDER BY created_at",args),
+        "latest_checkpoint":one("SELECT * FROM checkpoints WHERE work_id=? ORDER BY id DESC LIMIT 1",[work_id]) if work_id else one("SELECT * FROM checkpoints ORDER BY id DESC LIMIT 1"),
+        "latest_verification":one("SELECT * FROM verifications WHERE work_id=? ORDER BY id DESC LIMIT 1",[work_id]) if work_id else one("SELECT * FROM verifications ORDER BY id DESC LIMIT 1"),
+        "latest_error":one("SELECT * FROM errors WHERE work_id=? ORDER BY id DESC LIMIT 1",[work_id]) if work_id else one("SELECT * FROM errors ORDER BY id DESC LIMIT 1")
+    }
