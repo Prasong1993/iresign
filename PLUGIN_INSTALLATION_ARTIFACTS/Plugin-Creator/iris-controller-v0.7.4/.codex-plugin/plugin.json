@@ -1,0 +1,42 @@
+{
+  "interface": {
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "category": "Productivity",
+    "displayName": "IRIS Controller",
+    "developerName": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "shortDescription": "Unified workflow, policy, usage ledger and audit",
+    "longDescription": "One consolidated controller combines five-step evidence-gated work, deterministic project and budget checks, persistent usage records, audit/checkpoints/recovery, and capability routing for tools explicitly exposed by a host adapter. It does not claim automatic discovery or invocation of every ChatGPT tool.",
+    "defaultPrompt": [
+      "\u0e40\u0e23\u0e34\u0e48\u0e21\u0e07\u0e32\u0e19\u0e14\u0e49\u0e27\u0e22 IRIS controller: \u0e15\u0e23\u0e27\u0e08\u0e2b\u0e25\u0e31\u0e01\u0e10\u0e32\u0e19\u0e41\u0e25\u0e30\u0e17\u0e33 5 \u0e02\u0e31\u0e49\u0e19\u0e42\u0e14\u0e22\u0e44\u0e21\u0e48\u0e02\u0e49\u0e32\u0e21 gate",
+      "\u0e01\u0e48\u0e2d\u0e19\u0e2a\u0e23\u0e49\u0e32\u0e07\u0e07\u0e32\u0e19\u0e42\u0e04\u0e23\u0e07\u0e01\u0e32\u0e23\u0e43\u0e2b\u0e49\u0e40\u0e23\u0e35\u0e22\u0e01 check_project_policy \u0e41\u0e25\u0e30\u0e43\u0e0a\u0e49 create_controlled_task \u0e40\u0e21\u0e37\u0e48\u0e2d\u0e1c\u0e48\u0e32\u0e19\u0e40\u0e17\u0e48\u0e32\u0e19\u0e31\u0e49\u0e19",
+      "\u0e1a\u0e31\u0e19\u0e17\u0e36\u0e01/\u0e2d\u0e48\u0e32\u0e19/\u0e41\u0e01\u0e49\u0e44\u0e02 usage ledger \u0e1c\u0e48\u0e32\u0e19 record_usage, list_usage, get_usage, update_usage",
+      "\u0e15\u0e23\u0e27\u0e08\u0e1c\u0e25\u0e08\u0e23\u0e34\u0e07\u0e41\u0e25\u0e30\u0e40\u0e23\u0e35\u0e22\u0e01 final_verify \u0e01\u0e48\u0e2d\u0e19\u0e1b\u0e23\u0e30\u0e01\u0e32\u0e28\u0e2a\u0e48\u0e07\u0e21\u0e2d\u0e1a"
+    ],
+    "brandColor": "#0EA5E9"
+  },
+  "name": "iris-controller",
+  "version": "0.7.4",
+  "description": "Unified IRIS controller: evidence-gated five-step workflow, deterministic project policy, persistent usage ledger, audit, checkpoints, recovery, and registered-tool routing.",
+  "author": {
+    "name": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "url": "https://github.com/Prasong1993"
+  },
+  "keywords": [
+    "IRIS",
+    "workflow",
+    "evidence",
+    "verification",
+    "project-policy",
+    "usage-ledger",
+    "checkpoint",
+    "recovery",
+    "audit"
+  ],
+  "homepage": "https://github.com/Prasong1993/Prasong/tree/main/IRIS/iris-controller-v0.6.5",
+  "repository": "https://github.com/Prasong1993/Prasong",
+  "license": "MIT",
+  "skills": "./skills"
+}
