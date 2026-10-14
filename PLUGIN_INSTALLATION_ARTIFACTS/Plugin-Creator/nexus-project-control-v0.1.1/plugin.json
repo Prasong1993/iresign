@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {"email": "lek0805974491@gmail.com", "name": "ประสงค์ สีลปราณี"},
+  "description": "Evidence-gated project-control workflow based on the reviewed NEXUS design, with explicit policy, verification, audit, and recovery gates.",
+  "extensions": {"com.openai": {"interface": {
+    "capabilities": ["Interactive"], "category": "Productivity",
+    "defaultPrompt": [
+      "Control this task using the NEXUS evidence-gated workflow. Start with intake and evidence, and do not execute until the plan passes the policy gate.",
+      "Review this task for evidence gaps, policy violations, verification requirements, and recovery risks.",
+      "Prepare a traceable task plan with evidence references, execution gates, and a verification checklist."
+    ],
+    "developerName": "ประสงค์ สีลปราณี", "displayName": "NEXUS Project Control",
+    "longDescription": "A private workflow plugin that applies the reviewed NEXUS project-control process: intake, evidence-backed research, planning, policy gating, execution authorization, verification, audit, and controlled recovery. This release includes an append-only NEXUS_IRIS checkpoint template. It does not claim to connect to a live NEXUS API, persist a server-side ledger, or enforce deterministic gates outside the host model.",
+    "shortDescription": "Evidence-gated task control with protected checkpoints"
+  }}},
+  "keywords": ["project-control", "evidence-first", "policy-gates", "verification", "audit", "recovery", "nexus", "NEXUS_IRIS"],
+  "name": "nexus-project-control",
+  "version": "0.1.1"
+}
