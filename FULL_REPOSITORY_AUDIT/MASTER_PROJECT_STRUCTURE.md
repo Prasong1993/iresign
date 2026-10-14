@@ -101,9 +101,9 @@ iresign/
 | Cross-project mapping | Relationships between fields, records, APIs and responsibilities | Must cite both sides and use the five mapping classifications |
 
 Source identities must remain distinct:
-- NEXUS candidate: `Prasong1993/Loop-Controller`, historical SHA `eb5359505bf39e4ca1dcd3512f2b8ea3ac6e8baa` — **NEEDS REVALIDATION**.
-- IRIS candidate: `Prasong1993/Prasong`, historical SHA `fee44e82a0926ca85833beff8a9462156117a2d9` — **NEEDS REVALIDATION**.
-- Cloudflare candidate: `Prasong1993/LoopController` — previously `BLOCKED — IDENTITY MISMATCH`; do not select as baseline.
+- NEXUS candidate: `Prasong1993/Loop-Controller`, current observed `main` SHA `eb5359505bf39e4ca1dcd3512f2b8ea3ac6e8baa` — **VERIFIED for branch-head identity and tree inventory (52 entries); not a baseline selection**.
+- IRIS candidate: `Prasong1993/Prasong`, current observed `main` SHA `fee44e82a0926ca85833beff8a9462156117a2d9` — **VERIFIED for branch-head identity and tree inventory (107 entries); not a baseline selection**.
+- Cloudflare candidate: `Prasong1993/LoopController`, current observed `main` SHA `7c23df529f4ce2c25386f45f8b91fc90e5cf068d`, tree contains only `LICENSE` (1 entry) — remains `BLOCKED — IDENTITY MISMATCH`; do not select as baseline.
 - Audit workspace: `Prasong1993/iresign`, default branch observed as `master`; re-read HEAD before relying on any previous commit.
 
 ## 5. Six Plugin Creator snapshots — current recorded inventory
