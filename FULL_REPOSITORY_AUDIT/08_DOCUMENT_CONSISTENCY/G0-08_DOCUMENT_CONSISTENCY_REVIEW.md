@@ -52,3 +52,9 @@ Relevant evidence is linked to exact source paths and blob SHAs below. This revi
 - [ ] Reconcile REST versus MCP contracts field-by-field, preserving their current differences.
 - [ ] Link every finding to evidence-register IDs and mark resolved only after direct read-back.
 - [ ] Continue G0-07 field mapping after additional source-path review; neither G0-07 nor G0-08 is complete.
+
+
+## Follow-up — 2026-10-15
+
+- **DOC-009 closure:** the previously pending IRIS v0.6.5 destination manifest was reconciled. The central snapshot now contains all 21 files listed for source commit `fee44e82a0926ca85833beff8a9462156117a2d9`; each source and destination Git blob SHA matches and each text content was read back and compared exactly. The updated `PLUGIN_INSTALLATION_ARTIFACTS/ARTIFACT_MANIFEST.md` was read back with no PENDING entries.
+- Remaining limitation: this closes the text-snapshot completeness/read-back gap only. No official binary archive parity, installability, dependency installation, runtime, or new test execution is claimed.
