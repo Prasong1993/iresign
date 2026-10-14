@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "lek0805974491@gmail.com",
+    "name": "ประสงค์ สีลปราณี"
+  },
+  "description": "A practical self-check workflow that reduces assistant mistakes through evidence tracking, execution-state discipline, verification, and regression prevention.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [
+          "Interactive"
+        ],
+        "category": "Productivity",
+        "defaultPrompt": [
+          "Use Assistant Error Guard on this task before you act.",
+          "Audit this result for unsupported claims, missed evidence, and unverified execution.",
+          "Turn this mistake into a prevention rule and regression test."
+        ],
+        "developerName": "ประสงค์ สีลปราณี",
+        "displayName": "Assistant Error Guard",
+        "longDescription": "A focused workflow for preventing assistant errors: scope checks, source evidence labels, action-state separation, honest verification, error analysis, and regression tests. It guides behavior but does not independently enforce platform-level controls.",
+        "shortDescription": "Check evidence, actions, and results"
+      }
+    }
+  },
+  "name": "assistant-error-guard",
+  "version": "0.2.0"
+}
