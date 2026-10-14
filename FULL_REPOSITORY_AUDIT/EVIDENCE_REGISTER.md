@@ -36,3 +36,24 @@ Initial inspection date: 2026-10-15. Exact inspection time and timezone were not
 ## Change log
 
 - 2026-10-15: Initial evidence register created from direct GitHub API observations in the current work session. This register must be extended with new evidence rather than silently rewriting historical observations.
+
+
+## Current evidence observations — 2026-10-15
+
+These records were added after the initial observations above. They do not erase or retroactively replace the initial empty-root observation.
+
+| Evidence ID | Repository / Ref | Observation | Method | Status | Limitations |
+|---|---|---|---|---|---|
+| EVD-STRUCTURE-002 | `Prasong1993/iresign`, `master`, file `FULL_REPOSITORY_AUDIT/MASTER_PROJECT_STRUCTURE.md` | Central evidence structure contract updated; blob SHA `99886d2456eb2aa050fba512ad8d643af85d92ca`; file read back and key sections confirmed. | GitHub update + read-back | VERIFIED | This verifies the document content and listed directory indexes, not completion of all audit work. |
+| EVD-NEXUS-TREE-001 | `Prasong1993/Loop-Controller`, `main`, commit `eb5359505bf39e4ca1dcd3512f2b8ea3ac6e8baa` | Recursive tree returned 52 entries and `truncated=false`; full path/type/size/object-SHA inventory stored at `FULL_REPOSITORY_AUDIT/02_PROJECTS/NEXUS/FULL_FILE_INVENTORY.md` (destination blob SHA `1edb8c9ed2ac62200e2b48c27dc54c4563c43cd0`). | GitHub branch read + recursive tree API + destination read-back | VERIFIED for tree listing | Does not verify file contents, tests, CI, or runtime. |
+| EVD-IRIS-TREE-001 | `Prasong1993/Prasong`, `main`, commit `fee44e82a0926ca85833beff8a9462156117a2d9` | Recursive tree returned 107 entries and `truncated=false`; full path/type/size/object-SHA inventory stored at `FULL_REPOSITORY_AUDIT/02_PROJECTS/IRIS/FULL_FILE_INVENTORY.md` (destination blob SHA `c70451f33e3446d4bb443e87f9da365bba26d730`). | GitHub branch read + recursive tree API + destination read-back | VERIFIED for tree listing | Does not verify all file contents, tests, CI, or runtime. |
+| EVD-CF-CANDIDATE-TREE-001 | `Prasong1993/LoopController`, `main`, commit `7c23df529f4ce2c25386f45f8b91fc90e5cf068d` | Recursive tree returned one entry: `LICENSE`; `truncated=false`. Inventory stored at `FULL_REPOSITORY_AUDIT/02_PROJECTS/PROJECT_CONTROL_API/CANDIDATE_TREE_INVENTORY.md` (destination blob SHA `4d690439d7257dd3176c581c5300c68e180e29f4`). | GitHub branch read + recursive tree API + destination read-back | VERIFIED for returned tree; identity BLOCKED | A one-file tree does not resolve whether this is the intended Control API source. Do not select as baseline. |
+| EVD-PLUGIN-SNAPSHOT-001 | Plugin Creator current source file lists for six private USER-scope plugins; destination under `PLUGIN_INSTALLATION_ARTIFACTS/Plugin-Creator/` | Current plugin files were read from Plugin Creator and compared with the matching GitHub destination files. All 72/72 source files matched exact text content; no missing/extra source paths. | Plugin Creator `get_plugin_files` + GitHub `fetch_file` content comparison | VERIFIED for current source-to-snapshot content | Not a byte-for-byte comparison against a separate official install archive; installability/runtime tests NOT RUN. |
+| EVD-AUDIT-TREE-002 | `Prasong1993/iresign`, `master`, observed before this evidence-register update | Branch HEAD and recursive tree SHA `dfa5b61291c91e435bd432e8458c6c376f2edb0f`; 181 entries, 122 blobs, `truncated=false`. | GitHub branch and recursive tree API | VERIFIED at observation time | Later documentation commits may advance HEAD; preserve this as a timestamped historical observation. |
+
+## Current limitations
+
+- NEXUS and IRIS path inventories are verified; detailed source review and complete audit conclusions are not complete.
+- G0-07 Mapping Register and G0-08 Document Consistency remain pending/in progress under the existing NIR-P0-004 checkpoint.
+- CI/test results, runtime, integration, failure injection, and installability remain NOT RUN or UNKNOWN unless separately evidenced.
+- Baseline/source of truth remains UNKNOWN / NOT SELECTED. No source repository was modified and the full Project Control API database was not migrated.
