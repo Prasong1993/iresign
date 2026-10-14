@@ -185,3 +185,14 @@ These are historical context items and require revalidation against the latest s
 ## 9. Change log
 
 - 2026-10-15: Initial central registry seed assembled from inspected NEXUS source files and recovered project-control context. This entry does not assert full import, runtime integration, or test completion.
+
+
+## 10. Project Control API — initial data captured on 2026-10-15
+
+- Recovery package: [2026-10-15 Initial Project Data Recovery](FULL_REPOSITORY_AUDIT/02_PROJECTS/PROJECT_CONTROL_API/2026-10-15_INITIAL_PROJECT_DATA_RECOVERY.md).
+- Package commit: `1d6d5200f979a903b6cdc29e01adff713b0496d8`.
+- Scope: recovered project intent, Task Registry / Message Envelope / Execution Agent Interface / Evidence Registry / Approval Gate / Audit Trail concepts, historical Cloudflare Worker/D1 notes, distinct repository identities, pinned NEXUS source references, observed workflow/data-record concepts, and explicit limitations.
+- The original Cloudflare candidate remains `BLOCKED — IDENTITY MISMATCH`; the NEXUS repository is source-verified at its pinned commit but is not automatically selected as the original Control API baseline.
+- The package is not a full export of all chats, external tasks, private archives, live database rows, secrets, or deployment logs. Those sources remain `UNKNOWN / NOT RECOVERED` unless separately evidenced.
+- Baseline remains `UNKNOWN / NOT SELECTED`; runtime and live ChatGPT/mobile integration tests for this capture are `NOT RUN`.
+
