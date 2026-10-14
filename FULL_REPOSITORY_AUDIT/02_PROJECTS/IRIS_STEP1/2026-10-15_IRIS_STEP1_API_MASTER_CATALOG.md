@@ -250,3 +250,15 @@ OWASP's 2023 API list is a review checklist, not proof that each risk exists in 
 - Plugin ID changed/new plugin created: NO.
 - Other plugins merged: NO.
 - This master register is not yet loaded into IRIS Step 1's runtime SQLite database and is not automatically synchronized with it.
+
+
+## 15. Focused source-review addendum — seed initialization only
+
+**Scope boundary:** This addendum records only the seed-initialization observation below. It does not reclassify or validate unrelated catalog sections, other tables, the full schema, or runtime behavior.
+
+- **VERIFIED — source only:** The inspected startup path calls `init_db(); load_seed_data()`, and `load_seed_data()` itself calls `init_db()` before loading seed files.
+- **VERIFIED — source only:** The inspected seed loader inserts the seed entries without an evident upsert/deduplication guard in that code path.
+- **LIMITED INFERENCE — NOT runtime-confirmed:** Repeated startup may duplicate seeded entries where no database constraint prevents it. This is a risk to test, not a claim that duplicates already exist in the live database.
+- **NOT RUN:** No application startup, repeated-startup test, or SQLite row inspection was performed for this addendum.
+
+**Disposition:** Record this as one focused finding. Do not generalize it into a conclusion that the rest of the source, schema, or database is incorrect.
