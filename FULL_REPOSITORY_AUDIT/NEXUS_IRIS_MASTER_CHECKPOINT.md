@@ -47,3 +47,26 @@
 ## Change control note
 
 Adding project documents and a clearly labelled source snapshot to this audit repository creates commits on the destination branch. It does not alter the original NEXUS/IRIS source repositories and does not select an official source baseline. Each write must be verified by read-back.
+
+
+## Progress update — 2026-10-15 (append-only; preserves earlier status)
+
+The following observations were added after the initial checkpoint snapshot. They update the current work view without rewriting the historical entries above.
+
+| Workstream | Current observed status | Evidence / limitation |
+|---|---|---|
+| Audit structure | VERIFIED — structure document and grouping indexes read back | `MASTER_PROJECT_STRUCTURE.md`; grouping README files in `00_CONTROL_AND_CHECKPOINTS`, `02_PROJECTS`, `03`–`10`, `90`, `98`, `99` |
+| NEXUS identity/tree | VERIFIED for current `main` head and recursive tree listing | SHA `eb5359505bf39e4ca1dcd3512f2b8ea3ac6e8baa`; 52 tree entries; path inventory recorded |
+| IRIS identity/tree | VERIFIED for current `main` head and recursive tree listing | SHA `fee44e82a0926ca85833beff8a9462156117a2d9`; 107 tree entries; path inventory recorded |
+| LoopController candidate | BLOCKED — identity mismatch | SHA `7c23df529f4ce2c25386f45f8b91fc90e5cf068d`; tree contains only `LICENSE` |
+| Six private Plugin Creator snapshots | VERIFIED for current source-to-destination text contents | 72/72 files matched; official archive parity and install/runtime remain NOT RUN |
+| IRIS v0.6.5 snapshot | VERIFIED for source-to-destination contents | 21/21 files matched source blob SHA and exact text; manifest updated/read back; official archive parity and install/runtime remain NOT VERIFIED |
+| NEXUS target-SHA CI | VERIFIED success metadata | Run #193, exact SHA `eb5359505bf39e4ca1dcd3512f2b8ea3ac6e8baa`; no ChatGPT integration/runtime claim |
+| IRIS target-SHA CI | VERIFIED success metadata | Run #3, exact SHA `fee44e82a0926ca85833beff8a9462156117a2d9`; no host/plugin install claim |
+| G0-07 Mapping Register | IN PROGRESS | Initial 13 field/record mappings; more source-path review needed |
+| G0-08 Document Consistency | IN PROGRESS | Initial findings recorded; includes REST/MCP mismatch persistence and stale version/CI references |
+| Baseline / Source of Truth | UNKNOWN / NOT SELECTED | No baseline selected |
+| Full Project Control API database | DEFERRED / NOT MIGRATED | Only central/reference information is being recorded; no live database copied |
+| Runtime, failure injection, fresh test execution | NOT RUN | Source repositories remain read-only |
+
+No source repository was modified. The audit repository received documentation and provenance-labelled reference files only. Continue the existing TickTick checkpoint NIR-P0-004; do not create a new checkpoint.
