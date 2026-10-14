@@ -144,7 +144,7 @@ Verification limits from the existing index:
 | G0-11 | Archive provenance | Original archives, exact paths, TAR listing and SHA-256; comparison only to a trusted reference |
 | Phase 1 | Implementation | Requires separate explicit authorization |
 
-Current next checkpoint work remains G0-07 then G0-08. The current NEXUS and IRIS source-tree path inventories are recorded, but the full content-level audit inventory is not complete. Runtime/tests/failure-injection remain NOT RUN. Baseline remains UNKNOWN / NOT SELECTED.
+Current checkpoint progress: G0-07 Mapping Register is IN PROGRESS; G0-08 Document Consistency has initial findings recorded and remains IN PROGRESS. NEXUS/IRIS path inventories are recorded, but the content-level full audit inventory is incomplete. IRIS v0.6.5 snapshot: 21/21 files exact content match; six Plugin Creator snapshots: 72/72 exact content match. Runtime/tests/failure-injection remain NOT RUN. Baseline remains UNKNOWN / NOT SELECTED.
 
 ## 7. Immediate next actions
 
