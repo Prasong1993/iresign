@@ -1,0 +1,35 @@
+{
+  "interface": {
+    "capabilities": [
+      "Interactive"
+    ],
+    "category": "Productivity",
+    "defaultPrompt": [
+      "Control this task using the NEXUS evidence-gated workflow. Start with intake and evidence, and do not execute until the plan passes the policy gate.",
+      "Review this task for evidence gaps, policy violations, verification requirements, and recovery risks.",
+      "Prepare a traceable task plan with evidence references, execution gates, and a verification checklist."
+    ],
+    "developerName": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "displayName": "NEXUS Project Control",
+    "longDescription": "A private workflow plugin that applies the reviewed NEXUS project-control process: intake, evidence-backed research, planning, policy gating, execution authorization, verification, audit, and controlled recovery. This release includes an append-only NEXUS_IRIS checkpoint template. It does not claim to connect to a live NEXUS API, persist a server-side ledger, or enforce deterministic gates outside the host model.",
+    "shortDescription": "Evidence-gated task control with protected checkpoints"
+  },
+  "name": "nexus-project-control",
+  "version": "0.1.1",
+  "description": "Evidence-gated project-control workflow based on the reviewed NEXUS design, with explicit policy, verification, audit, and recovery gates.",
+  "author": {
+    "name": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "email": "lek0805974491@gmail.com"
+  },
+  "keywords": [
+    "project-control",
+    "evidence-first",
+    "policy-gates",
+    "verification",
+    "audit",
+    "recovery",
+    "nexus",
+    "NEXUS_IRIS"
+  ],
+  "skills": "./skills"
+}
