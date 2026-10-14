@@ -81,3 +81,18 @@ These records were added after the initial observations above. They do not erase
 - Runtime/integration/failure-injection/installability tests: NOT RUN in this audit.
 - Baseline/source of truth: UNKNOWN / NOT SELECTED.
 - Full Project Control API database import/migration: deferred and not authorized.
+
+
+## Additional evidence observations — IRIS source snapshot completion
+
+| Evidence ID | Repository / Ref | Observation | Method | Status | Limitations |
+|---|---|---|---|---|---|
+| EVD-IRIS-SNAPSHOT-001 | Source: `Prasong1993/Prasong` commit `fee44e82a0926ca85833beff8a9462156117a2d9`; destination: `Prasong1993/iresign` | Completed the previously incomplete `PLUGIN_INSTALLATION_ARTIFACTS/IRIS/iris-controller-v0.6.5/` snapshot. All 21 expected files are present. All 21 source blob SHAs equal destination blob SHAs and exact text comparisons passed. Seventeen missing files were added only after the central directory structure was written and read back. | Read source at pinned commit; limited high-confidence secret-pattern scan; create-file writes; destination read-back/content comparison; recursive tree listing | VERIFIED for 21-file source snapshot completeness and content parity | This is not an official archive comparison or installability/runtime test. Four pre-existing files had no per-file destination creation commit recorded before this verification; that history remains explicitly unrecorded. |
+| EVD-IRIS-MANIFEST-001 | `PLUGIN_INSTALLATION_ARTIFACTS/ARTIFACT_MANIFEST.md`, destination blob SHA `d3bd8aae67069cf1d8c559630f9f2e6af86026a9` | Manifest now lists 21 source/destination blob SHA matches and read-back status; no PENDING entries remain. Manifest read-back succeeded. | GitHub update + read-back | VERIFIED | The separate binary installer/official archive is still not identified; installation/runtime remain NOT VERIFIED. |
+
+## Updated snapshot status
+
+- IRIS v0.6.5 reference snapshot: 21/21 source files present and exact content-matched.
+- Six private Plugin Creator snapshots: 72/72 source files exact content-matched to current Plugin Creator file contents.
+- Combined verified source snapshot content comparisons: 93 files across these seven snapshot groups, excluding provenance/index/manifest documents.
+- Official installer archive parity and runtime/installability: NOT RUN.
