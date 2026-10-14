@@ -27,7 +27,7 @@ Purpose: preserve source snapshots for read-only audit in `Prasong1993/iresign`.
 
 ## Verification state
 - Plugin Creator inventory/read: VERIFIED for the listed source paths; no missing paths or size-limited paths were reported in the source reads.
-- GitHub destination writes: individual create-file calls returned commit SHAs for the 5 newly added plugin snapshots.
-- Destination read-back of every file: NOT YET VERIFIED.
+- GitHub destination writes: six plugin folder path sets were checked against current Plugin Creator lists; all expected source paths exist with no missing/extra source files. Provenance files are additional.
+- Destination read-back/content comparison: **VERIFIED — 72/72 source files match the current Plugin Creator file contents exactly** across all six plugins. Each plugin's current source files were read through Plugin Creator and compared with the corresponding GitHub destination files.
 - Byte-for-byte parity with an official install archive: NOT RUN.
 - Installation/runtime tests: NOT RUN.
