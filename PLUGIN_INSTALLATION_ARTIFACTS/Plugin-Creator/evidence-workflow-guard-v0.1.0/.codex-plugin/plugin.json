@@ -1,0 +1,26 @@
+{
+  "interface": {
+    "capabilities": [
+      "Interactive"
+    ],
+    "category": "Productivity",
+    "defaultPrompt": [
+      "Run the evidence-first workflow on this task and report verified results.",
+      "Create a gated timeline with dependencies, evidence requirements, and acceptance checks.",
+      "Audit this work for contradictions, missing evidence, risks, and unverified claims."
+    ],
+    "developerName": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "displayName": "Project Workflow Guard",
+    "longDescription": "Analyze recurring project tasks, gather verifiable evidence, plan gated execution, make bounded changes, validate results, and report clear status without unsupported claims.",
+    "shortDescription": "Evidence-first task control"
+  },
+  "name": "evidence-workflow-guard",
+  "version": "0.1.0",
+  "description": "A repeatable evidence-first workflow for planning, executing, and verifying project tasks with explicit gates and audit-ready status.",
+  "author": {
+    "name": "\u0e1b\u0e23\u0e30\u0e2a\u0e07\u0e04\u0e4c \u0e2a\u0e35\u0e25\u0e1b\u0e23\u0e32\u0e13\u0e35",
+    "email": "lek0805974491@gmail.com"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}
