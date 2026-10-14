@@ -1,47 +1,56 @@
-# MASTER CHECKPOINT — FULL REPOSITORY AUDIT
+# MASTER CHECKPOINT — PROJECT REBASE: IRESIGN REPOSITORY
 
-## Current state
+## Current project state
 
-| Field | Value | Evidence status |
+| Field | Current value | Status |
 |---|---|---|
-| Repository | https://github.com/Prasong1993/iresign | OBSERVED |
-| Owner | Prasong1993 | OBSERVED |
-| Default branch | `master` | OBSERVED |
-| Initial observed HEAD | `b90313cf09ee471d974dee33e87495593e37fcc9` | OBSERVED |
-| Root contents at initial inspection | Empty array returned by Contents API | OBSERVED |
-| Releases endpoint | Empty array returned | OBSERVED |
-| Tags | Not verified; endpoint request failed | UNKNOWN |
-| Local working tree | Not accessible through the inspected GitHub API | UNKNOWN |
-| Official baseline | Not selected or authorized | UNKNOWN |
-| Audit mode | READ-ONLY | USER-STATED / AUTHORIZED |
-| Runtime tests | NOT RUN | NOT RUN |
-| Source-code audit | NOT STARTED | NOT RUN |
+| Project | PROJECT REBASE — IRESIGN REPOSITORY | USER-STATED |
+| Repository | https://github.com/Prasong1993/iresign | VERIFIED |
+| Target branch | `master` | VERIFIED |
+| Audited starting commit | `8fd0bfae14cb6d0b191d4f718db93f44655e0a6e` | VERIFIED at checkpoint initialization |
+| Repository identity | `Prasong1993/iresign` | VERIFIED |
+| Current work mode | READ-ONLY AUDIT | USER-STATED |
+| Repository/source-code modification | NOT AUTHORIZED by the project directive | RESTRICTED |
+| Audit execution status | WAITING FOR REPOSITORY AUDIT | IN PROGRESS |
+| Baseline for the new project | IRESIGN repository selected by user; code-level readiness not yet verified | USER-STATED / NEEDS AUDIT |
+| Runtime tests | NOT RUN | NOT VERIFIED |
+| Requirements conformance | NOT VERIFIED | NOT RUN |
 
-## Current checkpoint
+## Scope of this checkpoint
 
-- Phase: Phase 0 — Repository Identity
-- Execution state: IN PROGRESS
-- Scope: Repository identity, file inventory, architecture, API/integrations, data paths, security, tests/CI, documentation, consolidation readiness, and website readiness.
-- Repository changes: only initial audit documentation are authorized.
-- Source-code changes: NOT AUTHORIZED.
-- Branch changes: NOT AUTHORIZED.
-- Baseline selection: NOT AUTHORIZED.
-- Deployment, production, database changes, dependency installation, penetration testing, and failure injection: NOT AUTHORIZED.
+Use the selected IRESIGN repository as the base for the user's new project. Inspect the actual files present at the target commit and assess them against the user's project requirements. Do not reassess whether another repository should be selected.
 
-## Next actions
+Previously written audit reports, status labels, and checkpoint content for the former project are historical material only. They are not evidence that files recently added to this repository have been reviewed. Do not import old completion states into this rebase. A file or requirement is VERIFIED only after a new, traceable check against the selected commit.
 
-1. Revalidate repository identity, default branch, target HEAD, commit history, branch list, tags, releases, and submodule/external references using accessible read-only sources.
-2. Establish the file inventory from the target commit; do not claim completeness until every path in scope is accounted for.
-3. Inspect source and configuration with path/symbol-level evidence.
-4. Map APIs, integrations, persistence paths, tests, and CI runs to exact commit SHAs.
-5. Record all inaccessible data and unverified claims as UNKNOWN or BLOCKED.
-6. Assess NEXUS/IRIS consolidation and future website readiness only after source evidence is collected.
-7. Do not select a baseline or start implementation without explicit separate authorization.
+## Required work sequence
 
-## Checkpoint rule
+1. Reconfirm repository, branch, and commit before each audit snapshot.
+2. Enumerate every path in the selected tree and classify the files in scope.
+3. Inspect source files, entry points, module responsibilities, dependencies, configuration, APIs, integrations, data flows, database access, and read/write paths.
+4. Inspect tests, CI workflows and commit-bound run results; do not execute code during this read-only audit.
+5. Review security and secrets-handling from source/configuration without exposing secret values.
+6. Compare current repository evidence with the user's project requirements and identify reusable, missing, conflicting, or obsolete material.
+7. Produce a new evidence register and gap assessment for this rebase. Historical reports may be consulted only as background, never as proof of current verification.
+8. Keep this checkpoint and checklist aligned with the selected IRESIGN project.
+9. Request separate approval before any source-code change, file move/deletion, commit, push, merge, deployment, database migration, or other repository mutation.
 
-Preserve prior evidence. Do not overwrite an evidence record to make it appear current. Every new observation must include its source, commit/ref where relevant, method, timestamp, and limitation. A change to repository HEAD after this checkpoint must be recorded as a new observation; do not silently replace the initial HEAD recorded above.
+## Verification rules
+
+- `VERIFIED`: directly checked against a stated criterion and linked to the exact commit/path or test/run.
+- `USER-STATED`: project choice or requirement explicitly supplied by the user.
+- `RECOVERED`: historical context that has not been revalidated for this rebase.
+- `PARTIAL`: only some required paths or criteria checked.
+- `UNKNOWN` / `BLOCKED`: evidence unavailable or a specific access/identity barrier prevents verification.
+- `NOT RUN`: no execution occurred.
+- Track `PLANNED`, `DISPATCHED`, `EXECUTED`, and `VERIFIED` separately.
+
+## Current blockers / limitations
+
+- Full path-by-path inventory and source review are not complete.
+- Runtime tests and installability have not been verified.
+- Files added recently must be reviewed from their current content and commit; an old status attached to a prior version does not verify them.
+- No repository mutation is authorized by the current read-only audit directive.
 
 ## Change log
 
-- 2026-10-15: Initial checkpoint created. This is a control document, not proof that the audit has been executed or completed.
+- 2026-10-15: Replaced the former NEXUS / IRIS / Project Control API checkpoint as the active project-control status with PROJECT REBASE — IRESIGN REPOSITORY. The former project's status is no longer the active checkpoint. Historical reports are not treated as current verification evidence.
